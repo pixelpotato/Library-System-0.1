@@ -3,7 +3,7 @@ package main;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
-import core.LibraryController;
+import controller.LibraryController;
 
 public class Main {
 	
