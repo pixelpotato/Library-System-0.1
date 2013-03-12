@@ -13,10 +13,11 @@ public class Main {
 	private static final int DISPLAY_TARGET_FRAME_RATE; // the frame rate of the program
 	
 	static {
-		DISPLAY_WIDTH = 1000;
-		DISPLAY_HEIGHT = 562;
-		DISPLAY_IS_FULLSCREEN = false;
-		DISPLAY_TARGET_FRAME_RATE = 60;
+		// the screen has an aspect ratio of 1280/720, which is about 1.67 : 1
+		DISPLAY_WIDTH = 1000; // 1000 pixels wide
+		DISPLAY_HEIGHT = 562; // 562 pixels in height
+		DISPLAY_IS_FULLSCREEN = false; // run in a window
+		DISPLAY_TARGET_FRAME_RATE = 60; // go through program loop 60 times a second
 	}
 	
 	/**
