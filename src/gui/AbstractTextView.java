@@ -33,7 +33,7 @@ public abstract class AbstractTextView extends AbstractSelectableView implements
 		CURSOR_BLINK_TIME = 500;
 		CURSOR_LEFT_OFFSET = 5;
 		CURSOR_TOP_BOTTOM_OFFSET = 2;
-		acceptableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';\"\\/.,<>_+=-`~ ";
+		acceptableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';\"\\/.,<>_+=-`~ :;";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -48,7 +48,7 @@ public abstract class AbstractTextView extends AbstractSelectableView implements
 		cursor = new Line(getViewRect().getX() + CURSOR_LEFT_OFFSET, getViewRect().getY() + CURSOR_TOP_BOTTOM_OFFSET, getViewRect().getX() + CURSOR_LEFT_OFFSET, getViewRect().getY() + getViewRect().getHeight() - CURSOR_TOP_BOTTOM_OFFSET);
 		text = "";
 		font = new UnicodeFont("gui/font/Walkway/Bold.ttf", 16, false, false);
-		font.getEffects().add(new ColorEffect());
+		font.getEffects().add(new ColorEffect(java.awt.Color.black));
 		font.addAsciiGlyphs();
 		font.loadGlyphs();
 	}
@@ -86,8 +86,11 @@ public abstract class AbstractTextView extends AbstractSelectableView implements
 	}
 	
 	public void keyPressed(int key, char c) {
-		if (characterIsAcceptable(c))
+		if (keyIsSpecial(key)) {
+			
+		} else if (characterIsAcceptable(c)) {
 			appendToText(c);
+		}
 	}
 	
 	public boolean characterIsAcceptable(char c) {
