@@ -78,25 +78,8 @@ public abstract class AbstractViewController extends BasicGameState {
 	 *            the delta value
 	 * */
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		pollInput(container.getInput());
-	}
-	
-	private void pollInput(Input input) {
-		pollKeyboard(input);
-		pollMouse(input);
-	}
-	
-	protected void pollKeyboard(Input input) {
-		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-			System.exit(0);
-		}
-	}
-	
-	protected void pollMouse(Input input) {
-		if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			for (AbstractView view : guiElements) {
-				view.handleMouseEvent(input);
-			}
+		if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+			container.exit();
 		}
 	}
 	

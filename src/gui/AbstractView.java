@@ -1,31 +1,59 @@
 package gui;
 
-import org.newdawn.slick.Input;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
 
 public abstract class AbstractView {
 	
-	private Rectangle viewRect;
+	private Rectangle frame;
+	private Rectangle bounds;
 	
 	public AbstractView(float x, float y, float width, float height) {
-		viewRect = new Rectangle(x, y, width, height);
+		frame = new Rectangle(x, y, width, height);
+		bounds = new Rectangle(0, 0, width, height);
 	}
 	
-	abstract public void handleMouseEvent(Input input);
+	abstract public void drawView(Graphics g);
 	
-	/**
-	 * @return the viewRect
-	 */
-	public Rectangle getViewRect() {
-		return viewRect;
+	protected void prepareContextForDrawing(Graphics g) {
+		g.pushTransform();
+		g.translate(frame.getX(), frame.getY());
+		g.setWorldClip(bounds);
+	}
+	
+	protected void restoreContext(Graphics g) {
+		g.clearWorldClip();
+		g.popTransform();
 	}
 	
 	/**
-	 * @param viewRect
-	 *            the viewRect to set
+	 * @return the frame
 	 */
-	public void setViewRect(Rectangle viewRect) {
-		this.viewRect = viewRect;
+	public Rectangle getFrame() {
+		return frame;
+	}
+	
+	/**
+	 * @param frame
+	 *            the frame to set
+	 */
+	public void setFrame(Rectangle frame) {
+		this.frame = frame;
+	}
+	
+	/**
+	 * @return the bounds
+	 */
+	public Rectangle getBounds() {
+		return bounds;
+	}
+	
+	/**
+	 * @param bounds
+	 *            the bounds to set
+	 */
+	public void setBounds(Rectangle bounds) {
+		this.bounds = bounds;
 	}
 	
 }
